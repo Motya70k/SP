@@ -9,14 +9,14 @@ passport.deserializeUser(function(user, done) {
     done(null, user); 
 });
 
-passport.use(new GoogleStrategy({
-    callbackURL:"/auth/google/callback",
-    passReqToCallback:true
-    },
-    function(request, accessToken, refreshToken, profile, done) {
-        return done(null, profile);
-    }
-));
+// passport.use(new GoogleStrategy({
+//     callbackURL:"/auth/google/callback",
+//     passReqToCallback:true
+//     },
+//     function(request, accessToken, refreshToken, profile, done) {
+//         return done(null, profile);
+//     }
+// ));
 
 passport.use(new GitHubStrategy({
     clientID: "",
