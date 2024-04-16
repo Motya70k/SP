@@ -10,9 +10,7 @@ passport.deserializeUser(function(user, done) {
 });
 
 passport.use(new GoogleStrategy({
-    clientID:"", // Данные из вашего аккаунта.
-    clientSecret:"", // Данные из вашего аккаунта.
-    callbackURL:"http://localhost:3000/auth/google/callback",
+    callbackURL:"/auth/google/callback",
     passReqToCallback:true
     },
     function(request, accessToken, refreshToken, profile, done) {
@@ -23,7 +21,7 @@ passport.use(new GoogleStrategy({
 passport.use(new GitHubStrategy({
     clientID: "",
     clientSecret: "",
-    callbackURL: "http://localhost:3000/auth/github/callback"
+    callbackURL: "/auth/github/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     return done(null, profile)
