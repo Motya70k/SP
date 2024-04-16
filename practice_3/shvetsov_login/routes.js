@@ -7,7 +7,12 @@ const {
     registerPage,
     login,
     loginPage,
+    githubPage,
 } = require("./controllers/userController");
+
+const passport = require("passport");
+require('./passport.js');
+const session = require('express-session');
 
 const ifNotLoggedin = (req, res, next) => {
     if (!req.session.userID) {
@@ -71,6 +76,37 @@ router.get('/logout', (req, res, next) => {
     });
     res.redirect('/login');
 });
+router.get('/auth/google',
+  passport.authenticate('google', { scope:
+      [ 'email', 'profile' ] }
+));
+
+router.get('/auth/google/callback', (req, res, next) => {
+    passport.authenticate( 'google', {
+        successRedirect: '/auth/google/success',
+        failureRedirect: '/auth/google/failure'
+})});
+
+router.get('/auth/google/success', ifLoggedin, (req, res) => {
+    res.send('Hello there!');
+});
+
+
+router.get('/auth/google/failure', (req, res) => {
+    res.send('Something went wrong!');
+});
+
+router.get('/auth/github',
+  passport.authenticate('github', { scope: [ 'user:email' ] }));
+
+router.get('/auth/github/callback', 
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/auth/github/success');
+  });
+
+router.get('/auth/github/success', githubPage);
 
 module.exports = router;
        

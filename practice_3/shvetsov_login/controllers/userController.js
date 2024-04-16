@@ -83,7 +83,7 @@ exports.login = async (req, res, next) => {
 
     try {
 
-        const [row] = await dbConnection.execute('SELECT * FROM` users` WHERE `email`=?', [body._email]);
+        const [row] = await dbConnection.execute('SELECT * FROM `users` WHERE `email`=?', [body._email]);
 
         if (row.length != 1) {
             return res.render('login', {
@@ -107,4 +107,8 @@ exports.login = async (req, res, next) => {
         next(e);
     }
 }
+
+exports.githubPage = async(req, res, next) => {
+    res.render("githubHome");
+};
        
