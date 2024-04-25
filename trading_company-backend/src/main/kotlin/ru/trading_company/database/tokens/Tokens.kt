@@ -2,12 +2,13 @@ package ru.trading_company.database.tokens
 
 import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.insert
+import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
 
-object Tokens: Table() {
+object Tokens : Table() {
     private val id = Tokens.varchar("id", 50)
     private val login = Tokens.varchar("login", 50)
-    private val token = Tokens.varchar("token", 50)
+    private val token = Tokens.varchar("token", 255)
 
     fun insert(tokenDTO: TokenDTO) {
         transaction {
@@ -16,6 +17,23 @@ object Tokens: Table() {
                 it[login] = tokenDTO.login
                 it[token] = tokenDTO.token
             }
+        }
+    }
+
+    fun fetchTokens(): List<TokenDTO> {
+        return try {
+            transaction {
+                Tokens.selectAll().toList()
+                    .map {
+                        TokenDTO(
+                            id = it[Tokens.id],
+                            token = it[login],
+                            login = it[token]
+                        )
+                    }
+            }
+        } catch (e: Exception) {
+            emptyList()
         }
     }
 }

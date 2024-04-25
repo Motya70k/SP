@@ -1,14 +1,17 @@
 package ru.trading_company.database.users
 
-import org.jetbrains.exposed.sql.Table
-import org.jetbrains.exposed.sql.insert
-import org.jetbrains.exposed.sql.selectAll
+import at.favre.lib.crypto.bcrypt.BCrypt
+import io.ktor.http.*
+import io.ktor.util.*
+import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.transactions.transaction
+import kotlin.text.toCharArray
 
 object Users : Table() {
-    private val login = Users.varchar("login", 50)
-    private val name = Users.varchar("name", 50)
-    private val surname = Users.varchar("surname", 50)
+    val login = Users.varchar("login", 50)
+    val name = Users.varchar("name", 50)
+    val surname = Users.varchar("surname", 50)
     private val password = Users.varchar("password", 255)
     private val phone = Users.varchar("phone", 20)
     private val role = Users.varchar("role", 50)
@@ -19,7 +22,7 @@ object Users : Table() {
                 it[login] = userDTO.login
                 it[name] = userDTO.name
                 it[surname] = userDTO.surname
-                it[password] = userDTO.password
+                it[password] = BCrypt.withDefaults().hashToString(12, userDTO.password.toCharArray())
                 it[phone] = userDTO.phone
                 it[role] = userDTO.role
             }
@@ -41,6 +44,12 @@ object Users : Table() {
             }
         } catch (e: Exception) {
             null
+        }
+    }
+
+    fun deleteUser(login: String) {
+        transaction {
+            Users.deleteWhere { Users.login eq login }
         }
     }
 }

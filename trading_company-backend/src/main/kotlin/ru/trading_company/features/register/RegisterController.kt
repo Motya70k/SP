@@ -9,6 +9,7 @@ import ru.trading_company.database.tokens.TokenDTO
 import ru.trading_company.database.tokens.Tokens
 import ru.trading_company.database.users.UserDTO
 import ru.trading_company.database.users.Users
+import ru.trading_company.security.JwtConfig
 import java.util.UUID
 
 class RegisterController(private val call: ApplicationCall) {
@@ -20,7 +21,7 @@ class RegisterController(private val call: ApplicationCall) {
         if (userDto != null) {
             call.respond(HttpStatusCode.Conflict, "User already exist")
         } else {
-            val token = UUID.randomUUID().toString()
+            val token = JwtConfig.instance.createAccessToken(registerRemote.login)
 
             try {
                 Users.insert(
