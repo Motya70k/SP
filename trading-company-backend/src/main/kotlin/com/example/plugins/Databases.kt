@@ -2,6 +2,7 @@ package com.example.plugins
 
 import com.example.data.model.table.EmployeeTable
 import com.example.data.model.table.ItemTable
+import com.example.data.model.table.PurchaseListTable
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import io.ktor.server.application.*
@@ -22,7 +23,7 @@ object DatabaseFactory{
 
         transaction {
             SchemaUtils.create(
-                EmployeeTable, ItemTable
+                EmployeeTable, ItemTable, PurchaseListTable
             )
         }
     }

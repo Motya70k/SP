@@ -3,8 +3,10 @@ package com.example
 import com.example.authentification.JwtService
 import com.example.data.repository.EmployeeRepositoryImpl
 import com.example.data.repository.ItemRepositoryImpl
+import com.example.data.repository.PurchaseListRepositoryImpl
 import com.example.domain.usecase.EmployeeUseCase
 import com.example.domain.usecase.ItemUseCase
+import com.example.domain.usecase.PurchaseListUseCase
 import com.example.plugins.*
 import com.example.plugins.DatabaseFactory.initializeDataBase
 import io.ktor.server.application.*
@@ -19,14 +21,18 @@ fun main() {
 fun Application.module() {
 
     val jwtService = JwtService()
+
     val employeeRepository = EmployeeRepositoryImpl()
     val itemRepository = ItemRepositoryImpl()
+    val purchaseListRepository = PurchaseListRepositoryImpl()
+
     val employeeUseCase = EmployeeUseCase(employeeRepository, jwtService)
     val itemUseCase = ItemUseCase(itemRepository)
+    val purchaseListUseCase = PurchaseListUseCase(purchaseListRepository)
 
     initializeDataBase()
     configureSerialization()
     configureMonitoring()
     configureSecurity(employeeUseCase)
-//    configureRouting()
+    configureRouting(employeeUseCase, itemUseCase, purchaseListUseCase)
 }

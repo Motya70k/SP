@@ -42,7 +42,7 @@ class ItemRepositoryImpl : ItemRepository {
 
     override suspend fun deleteItem(itemId: Int, ownerId: Int) {
         dbQuery {
-            ItemTable.deleteWhere { ItemTable.id.eq(itemId) and ItemTable.addedBy.eq(ownerId) }
+            ItemTable.deleteWhere { id.eq(itemId) and addedBy.eq(ownerId) }
         }
     }
 

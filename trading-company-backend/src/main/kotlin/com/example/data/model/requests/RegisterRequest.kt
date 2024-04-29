@@ -1,16 +1,15 @@
-package com.example.data.model
+package com.example.data.model.requests
 
-import io.ktor.server.auth.*
+import com.example.utils.Constants
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class EmployeeModel(
-    val id: Int,
+data class RegisterRequest(
     val login: String,
     val password: String,
     val name: String,
     val lastname: String,
     val phoneNumber: String,
-    val role: RoleModel,
-    val isActive: Boolean = false,
-): Principal
+    val role: String,
+    val isActive: Boolean = false
+)
