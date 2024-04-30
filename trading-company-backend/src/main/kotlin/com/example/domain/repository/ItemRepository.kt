@@ -11,4 +11,8 @@ interface ItemRepository {
     suspend fun updateItem(item: ItemModel, ownerId: Int)
 
     suspend fun deleteItem(itemId: Int, ownerId: Int)
+
+    suspend fun checkItemExists(itemId: Int): Boolean
+
+    suspend fun getItemById(itemId: Int): ItemModel?
 }

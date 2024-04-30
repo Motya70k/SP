@@ -9,7 +9,9 @@ interface PurchaseListRepository {
 
     suspend fun getAllPurchase(): List<PurchaseListModel>
 
-    suspend fun updatePurchase(purchase: PurchaseListModel, ownerItemId: Int)
+    suspend fun updatePurchase(purchase: PurchaseListModel)
 
-    suspend fun deletePurchase(purchaseId: Int, ownerItemId: Int)
+    suspend fun deletePurchase(purchaseId: Int)
+
+    suspend fun getPurchaseById(purchaseId: Int): PurchaseListModel?
 }

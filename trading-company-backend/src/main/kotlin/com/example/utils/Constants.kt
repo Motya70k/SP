@@ -13,6 +13,7 @@ class Constants {
         const val INCORRECT_PASSWORD = "Incorrect password"
         const val MISSING_FIELDS = "Missing some fields"
         const val EMPLOYEE_NOT_FOUND = "Employee not found"
+        const val ITEMID_DOESNT_EXIST = "ItemId doesnt exist"
     }
 
     object Success {

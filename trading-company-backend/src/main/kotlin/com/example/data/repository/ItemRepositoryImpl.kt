@@ -2,6 +2,7 @@ package com.example.data.repository
 
 import com.example.data.model.ItemModel
 import com.example.data.model.table.ItemTable
+import com.example.data.model.table.ItemTable.id
 import com.example.domain.repository.ItemRepository
 import com.example.plugins.DatabaseFactory.dbQuery
 import org.jetbrains.exposed.sql.*
@@ -43,6 +44,19 @@ class ItemRepositoryImpl : ItemRepository {
     override suspend fun deleteItem(itemId: Int, ownerId: Int) {
         dbQuery {
             ItemTable.deleteWhere { id.eq(itemId) and addedBy.eq(ownerId) }
+        }
+    }
+
+    override suspend fun checkItemExists(itemId: Int): Boolean {
+        val item = getItemById(itemId)
+        return item != null
+    }
+
+    override suspend fun getItemById(itemId: Int): ItemModel? {
+        return dbQuery {
+            ItemTable.selectAll().where(id.eq(itemId))
+                .mapNotNull { rowToItem(it) }
+                .singleOrNull()
         }
     }
 

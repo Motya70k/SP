@@ -1,12 +1,8 @@
 package com.example
 
 import com.example.authentification.JwtService
-import com.example.data.repository.EmployeeRepositoryImpl
-import com.example.data.repository.ItemRepositoryImpl
-import com.example.data.repository.PurchaseListRepositoryImpl
-import com.example.domain.usecase.EmployeeUseCase
-import com.example.domain.usecase.ItemUseCase
-import com.example.domain.usecase.PurchaseListUseCase
+import com.example.data.repository.*
+import com.example.domain.usecase.*
 import com.example.plugins.*
 import com.example.plugins.DatabaseFactory.initializeDataBase
 import io.ktor.server.application.*
@@ -25,14 +21,18 @@ fun Application.module() {
     val employeeRepository = EmployeeRepositoryImpl()
     val itemRepository = ItemRepositoryImpl()
     val purchaseListRepository = PurchaseListRepositoryImpl()
+    val clientRepository = ClientRepositoryImpl()
+    val orderRepository = OrderRepositoryImpl()
 
     val employeeUseCase = EmployeeUseCase(employeeRepository, jwtService)
     val itemUseCase = ItemUseCase(itemRepository)
     val purchaseListUseCase = PurchaseListUseCase(purchaseListRepository)
+    val clientUseCase = ClientUseCase(clientRepository)
+    val orderUseCase = OrderUseCase(orderRepository)
 
     initializeDataBase()
     configureSerialization()
     configureMonitoring()
     configureSecurity(employeeUseCase)
-    configureRouting(employeeUseCase, itemUseCase, purchaseListUseCase)
+    configureRouting(employeeUseCase, itemUseCase, purchaseListUseCase, clientUseCase, orderUseCase)
 }

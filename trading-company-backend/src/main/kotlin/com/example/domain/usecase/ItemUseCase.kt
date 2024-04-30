@@ -22,4 +22,12 @@ class ItemUseCase(
     suspend fun deleteItem(itemId: Int, ownerId: Int) {
         itemRepository.deleteItem(itemId = itemId, ownerId = ownerId)
     }
+
+    suspend fun checkItemExist(itemId: Int): Boolean {
+        return itemRepository.checkItemExists(itemId)
+    }
+
+    suspend fun getItemById(itemId: Int): ItemModel? {
+        return itemRepository.getItemById(itemId)
+    }
 }

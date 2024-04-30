@@ -1,12 +1,12 @@
 package com.example.data.model
 
+import io.ktor.server.auth.*
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class PurchaseListModel(
+data class ClientModel(
     val id: Int,
-    val itemId: Int,
     val name: String,
-    val amount: Int,
-    val cost: Int
-)
+    val lastname: String,
+    val phone: String
+): Principal
