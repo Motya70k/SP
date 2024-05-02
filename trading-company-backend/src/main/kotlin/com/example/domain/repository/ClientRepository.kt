@@ -11,4 +11,8 @@ interface ClientRepository {
     suspend fun deleteClient(id: Int)
 
     suspend fun getAllClients(): List<ClientModel>
+
+    suspend fun checkClientExist(name: String, lastname: String): Boolean
+
+    suspend fun getClientByNameAndLastname(name: String, lastname: String): ClientModel?
 }

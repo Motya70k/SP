@@ -14,6 +14,7 @@ class Constants {
         const val MISSING_FIELDS = "Missing some fields"
         const val EMPLOYEE_NOT_FOUND = "Employee not found"
         const val ITEMID_DOESNT_EXIST = "ItemId doesnt exist"
+        const val CLIENT_DOESNT_EXIST = "Client doesnt exist"
     }
 
     object Success {
@@ -24,6 +25,14 @@ class Constants {
         const val PURCHASE_ADDED_SUCCESSFULLY = "Purchase added successfully"
         const val PURCHASE_UPDATE_SUCCESSFULLY = "Purchase updated successfully"
         const val PURCHASE_DELETE_SUCCESSFULLY = "Purchase deleted successfully"
+
+        const val CLIENT_ADDED_SUCCESSFULLY = "Client added successfully"
+        const val CLIENT_UPDATED_SUCCESSFULLY = "Client updated successfully"
+        const val CLIENT_DELETE_SUCESSSFULLY = "Client deleted succesfully"
+
+        const val ORDER_ADDED_SUCCESSFULLY = "Order added successfully"
+        const val ORDER_UPDATED_SUCCESSFULLY = "Order updated successfully"
+        const val ORDER_DELETED_SUCCESSFULLY = "Order deleted successfully"
     }
 
     object Value {

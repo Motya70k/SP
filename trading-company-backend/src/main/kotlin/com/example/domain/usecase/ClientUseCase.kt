@@ -22,4 +22,8 @@ class ClientUseCase (
     suspend fun deleteClient(id: Int) {
         clientRepository.deleteClient(id = id)
     }
+
+    suspend fun checkClientExist(name: String, lastname: String): Boolean {
+        return clientRepository.checkClientExist(name, lastname)
+    }
 }

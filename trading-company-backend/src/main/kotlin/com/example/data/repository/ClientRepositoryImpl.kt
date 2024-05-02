@@ -43,6 +43,19 @@ class ClientRepositoryImpl : ClientRepository {
         }
     }
 
+    override suspend fun checkClientExist(name: String, lastname: String): Boolean {
+        val client = getClientByNameAndLastname(name, lastname)
+        return client != null
+    }
+
+    override suspend fun getClientByNameAndLastname(name: String, lastname: String): ClientModel? {
+        return dbQuery {
+            ClientTable.selectAll().where(ClientTable.name.eq(name) and (ClientTable.lastname.eq(lastname)))
+                .mapNotNull { rowToClient(it) }
+                .singleOrNull()
+        }
+    }
+
     private fun rowToClient(row: ResultRow): ClientModel? {
         if (row == null) {
             return null

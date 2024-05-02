@@ -18,6 +18,6 @@ fun Application.configureRouting(
         itemRouting(itemUseCase = itemUseCase)
         purchaseListRouting(purchaseListUseCase = purchaseListUseCase, itemUseCase = itemUseCase)
         clientRouting(clientUseCase = clientUseCase)
-        orderRouting(orderUseCase = orderUseCase)
+        orderRouting(orderUseCase = orderUseCase, itemUseCase = itemUseCase, clientUseCase = clientUseCase)
     }
 }

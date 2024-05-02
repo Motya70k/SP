@@ -5,9 +5,9 @@ import org.jetbrains.exposed.sql.Table
 
 object ClientTable : Table() {
     val id: Column<Int> = integer("id").autoIncrement()
-    val name: Column<String> = varchar("name", 50)
-    val lastname: Column<String> = varchar("surname", 50)
+    val name: Column<String> = varchar("name", 50).uniqueIndex()
+    val lastname: Column<String> = varchar("surname", 50).uniqueIndex()
     val phone: Column<String> = varchar("phone", 50)
 
-    override val primaryKey: PrimaryKey = PrimaryKey(ItemTable.id)
+    override val primaryKey: PrimaryKey = PrimaryKey(id)
 }

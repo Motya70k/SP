@@ -1,5 +1,6 @@
 package com.example.domain.repository
 
+import com.example.data.model.ClientModel
 import com.example.data.model.OrderModel
 
 interface OrderRepository {

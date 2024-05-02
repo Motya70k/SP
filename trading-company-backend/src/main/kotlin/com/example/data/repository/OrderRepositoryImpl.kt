@@ -1,5 +1,6 @@
 package com.example.data.repository
 
+import com.example.data.model.ClientModel
 import com.example.data.model.OrderModel
 import com.example.data.model.table.ClientTable
 import com.example.data.model.table.ItemTable
