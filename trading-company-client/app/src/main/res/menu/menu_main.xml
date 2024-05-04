@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/employeeItem"
+        android:title="Сотрудники"/>
+    <item
+        android:id="@+id/itemItem"
+        android:title="Товары"/>
+    <item
+        android:id="@+id/purchaseItem"
+        android:title="Закупки"/>
+    <item
+        android:id="@+id/clientItem"
+        android:title="Клиенты"/>
+    <item
+        android:id="@+id/orderItem"
+        android:title="Заказы"/>
+</menu>

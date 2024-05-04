@@ -82,6 +82,21 @@ fun Route.employeeRoute(employeeUseCase: EmployeeUseCase) {
         }
     }
 
+    get("/get-all-employees") {
+
+        try {
+            val employee = employeeUseCase.getAllEmployees()
+            call.respond(HttpStatusCode.OK, employee)
+        } catch (e: Exception) {
+            call.respond(
+                HttpStatusCode.Conflict, BaseResponse(
+                    false,
+                    e.message ?: Constants.Error.GENERAL
+                )
+            )
+        }
+    }
+
     authenticate("jwt") {
 
         get("/get-employee-info") {

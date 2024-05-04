@@ -32,6 +32,13 @@ class EmployeeRepositoryImpl : EmployeeRepository {
         }
     }
 
+    override suspend fun getAllEmployees(): List<EmployeeModel> {
+        return dbQuery {
+            EmployeeTable.selectAll()
+                .mapNotNull { rowToEmployee(row = it) }
+        }
+    }
+
     private fun rowToEmployee(row: ResultRow?): EmployeeModel? {
         if (row == null) {
             return null

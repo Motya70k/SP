@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">trading-company-client</string>
+    <string name="trading_company">Торгово-промышленное предприятие</string>
+    <string name="enter_login">Введите логин</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="auth">Авторизоваться</string>
+    <string name="search">Поиск</string>
+    <string name="delete">Удалить</string>
+    <string name="update">Изменить</string>
+    <string name="add">Добавить</string>
+</resources>

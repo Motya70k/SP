@@ -18,4 +18,8 @@ class EmployeeUseCase(
 
     fun getJwtVerifier(): JWTVerifier = jwtService.getVerifier()
 
+    suspend fun getAllEmployees(): List<EmployeeModel> {
+        return repositoryImpl.getAllEmployees()
+    }
+
 }
